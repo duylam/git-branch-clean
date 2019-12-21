@@ -1,0 +1,66 @@
+{
+  "name": "gits",
+  "version": "1.0.0",
+  "description": "",
+  "module": "index.js",
+  "keywords": [
+    "git"
+  ],
+  "homepage": "https://github.com/duylam/gits",
+  "bugs": "https://github.com/duylam/gits/issues",
+  "repository": "duylam/gits",
+  "license": "MIT",
+  "author": {
+    "name": "Duy Lam",
+    "email": "duylamphuong@gmail.com"
+  },
+  "files": [
+    "*"
+  ],
+  "scripts": {
+    "lint": "standard",
+    "build": "del dist; babel --source-maps --out-dir dist src/index.js",
+    "start": "nodemon --exec babel-node -r dotenv/config src/index.js"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  },
+  "standard": {
+    "ignore": [
+      "node_modules/"
+    ]
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "dist/"
+    ]
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.1",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "del-cli": "^3.0.0",
+    "dotenv": "^8.2.0",
+    "gulp": "^4.0.0",
+    "gulp-cli": "^2.0.0",
+    "nodemon": "^2.0.1",
+    "standard": "^14.3.1"
+  },
+  "dependencies": {
+    "yargs": "^15.0.2"
+  }
+}

@@ -16,19 +16,19 @@ export default argv
   .option('b', {
     alias: 'branch',
     default: 'master',
-    describe: 'Branch to stay when doing deleting. Default is "master"',
+    describe: 'Branch to switch to when doing deleting. Default is "master"',
     type: 'string'
   })
   .option('r', {
     alias: 'remote-name',
     default: '',
-    describe: 'Delete branches at remote repo with given name. Default is not delete any remote repo',
+    describe: 'Delete branches at give remote repo name.',
     type: 'string'
   })
   .option('n', {
     alias: 'no-confirm',
     default: false,
-    describe: 'No wait for confirmation. Default is false',
+    describe: 'Skip confirmation. Default is false (requires confirmation)',
     type: 'boolean'
   })
   .help('h')

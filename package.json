@@ -1,14 +1,14 @@
 {
-  "name": "gits",
+  "name": "git-gc",
   "version": "1.0.0",
   "description": "",
   "module": "index.js",
   "keywords": [
     "git"
   ],
-  "homepage": "https://github.com/duylam/gits",
-  "bugs": "https://github.com/duylam/gits/issues",
-  "repository": "duylam/gits",
+  "homepage": "https://github.com/duylam/git-gc",
+  "bugs": "https://github.com/duylam/git-gc/issues",
+  "repository": "duylam/git-gc",
   "license": "MIT",
   "author": {
     "name": "Duy Lam",
@@ -19,8 +19,8 @@
   ],
   "scripts": {
     "lint": "standard",
-    "build": "del dist; babel --source-maps --out-dir dist src/",
-    "start": "DEBUG=gits nodemon --exec babel-node -r dotenv/config src/index.js",
+    "build": "del dist; babel --source-maps --out-dir dist src/; chmod 755 dist/index.js",
+    "start": "nodemon --exec \"npm run build\" src/index.js",
     "update-toc": "markdown-toc -i ./README.md"
   },
   "babel": {
@@ -46,7 +46,7 @@
     ]
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=8.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
@@ -55,7 +55,6 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/register": "^7.0.0",
     "del-cli": "^3.0.0",
-    "dotenv": "^8.2.0",
     "gulp": "^4.0.0",
     "gulp-cli": "^2.0.0",
     "nodemon": "^2.0.1",

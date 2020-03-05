@@ -1,25 +1,67 @@
+#!/usr/bin/env node
+
 import isNil from 'lodash/isNil';
 import omit from 'lodash/omit';
 import _debug from 'debug';
-import config from './config';
+import os from 'os';
+import $ from 'lodash';
+
+import cliOptions from './cli-options';
 import {execAsync, ensureGitFolder} from './utils';
 
-const debug = _debug('gits');
+const debug = _debug('git-gc');
 main()
 
 async function main() {
   debug('Command line options');
-  debug(omit(config, '_', '$0'));
+  debug(omit(cliOptions, '_', '$0'));
 
-  await ensureGitFolder(__dirname);
-
-  if (!isNil(config.r)) {
-    await execAsync(`git fetch ${config.r}`);
-    debug('Ran "git fetch"');
+  try {
+    debug('Validating .git folder');
+    await ensureGitFolder(__dirname);
+  }
+  catch (err) {
+    debug(err);
+    exit(`Folder ${__dirname} isn't a git folder (no .git folder).`);
   }
 
-  await execAsync(`git checkout ${config.b}`);
-  debug('Ran "git checkout"');
+  try {
+    await execAsync(`git checkout ${cliOptions.b}`);
+    console.debug(`Switched to branch ${cliOptions.b}`);
+  }
+  catch (err) {
+    debug(err);
+    exit(`Switching failed, error: ${err.message}.`);
+  }
+
+  try {
+    const [stdout] = await execAsync('git branch');
+
+    const branchLines = stdout.split(os.EOL);
+    if (branchLines.length === 1) {
+      console.debug('Only one local branch remains, nothing to clean up.');
+      process.exit(0);
+    }
+
+    const branchNamesToDelete = branchLines
+      .filter((name) => !name.startsWith('*')) // exclude current branch
+      .map((name) => name.trim())
+      .filter($.identity); // "git checkout" give one empty line
+
+    console.debug('Following branches will be deleted');
+    for (const name of branchNamesToDelete) {
+      console.debug(` - ${name}`);
+    }
+  }
+  catch (err) {
+    debug(err);
+    exit(`Unknown error: ${err.message}.`);
+  }
+}
+
+function exit(message) {
+  console.debug(message);
+  process.exit(1);
 }
 
 /*

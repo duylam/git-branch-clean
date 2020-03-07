@@ -27,6 +27,7 @@ async function main() {
     exit(`Folder ${__dirname} isn't a git folder (no .git folder).`);
   }
 
+  // Make the entire log messages more clear
   if (cliOptions.remoteName) {
     console.log(`Fetching remote git repo name: ${cliOptions.remoteName}`);
     await execAsync(`git fetch ${cliOptions.remoteName}`);

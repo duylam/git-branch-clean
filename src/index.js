@@ -27,9 +27,14 @@ async function main() {
     exit(`Folder ${__dirname} isn't a git folder (no .git folder).`);
   }
 
+  if (cliOptions.remoteName) {
+    console.log(`Fetching remote git repo name: ${cliOptions.remoteName}`);
+    await execAsync(`git fetch ${cliOptions.remoteName}`);
+  }
+
   try {
     await execAsync(`git checkout ${cliOptions.b}`);
-    console.debug(`Switched to branch ${cliOptions.b}`);
+    console.log(`Switched to branch ${cliOptions.b}`);
   }
   catch (err) {
     debug(err);
@@ -37,16 +42,26 @@ async function main() {
   }
 
   try {
-    const [stdout] = await execAsync('git branch');
+    const [stdout] = await execAsync(
+      cliOptions.remoteName ? `git branch -r --list ${cliOptions.remoteName}/*` : 'git branch --list');
 
     const branchLines = stdout.split(os.EOL);
     if (branchLines.length === 1) {
-      console.log('Only one local branch remains, nothing to clean up.');
+      console.log('Only one branch remains, nothing to clean up.');
       process.exit(0);
     }
 
-    const branchNamesToDelete = branchLines
-      .filter((name) => !name.startsWith('*')) // exclude current branch
+    let branchNamesToDelete;
+
+    if (cliOptions.remoteName) {
+      branchNamesToDelete = branchLines.map((name) => name.replace(`${cliOptions.remoteName}/`, ''));
+    }
+    else {
+      // exclude current branch
+      branchNamesToDelete = branchLines.filter((name) => !name.startsWith('*'));
+    }
+
+    branchNamesToDelete = branchNamesToDelete
       .map((name) => name.trim())
       .filter($.identity); // "git checkout" give one empty line
 

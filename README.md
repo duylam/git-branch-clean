@@ -28,3 +28,4 @@ TBD
 
 - `npm run update-toc` to update Table of Content this file
 - `npm run lint`
+- Create dummy local git branches by running script [./scripts/create-dummy-branches.sh](./scripts/create-dummy-branches.sh) at any git folder

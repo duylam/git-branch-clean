@@ -5,9 +5,11 @@ import omit from 'lodash/omit';
 import _debug from 'debug';
 import os from 'os';
 import $ from 'lodash';
+import eachSeries from 'async/eachSeries';
+import BPromise from 'bluebird';
 
 import cliOptions from './cli-options';
-import {execAsync, ensureGitFolder} from './utils';
+import {execAsync, ensureGitFolder, prompt} from './utils';
 
 const debug = _debug('git-gc');
 main()
@@ -39,7 +41,7 @@ async function main() {
 
     const branchLines = stdout.split(os.EOL);
     if (branchLines.length === 1) {
-      console.debug('Only one local branch remains, nothing to clean up.');
+      console.log('Only one local branch remains, nothing to clean up.');
       process.exit(0);
     }
 
@@ -48,9 +50,48 @@ async function main() {
       .map((name) => name.trim())
       .filter($.identity); // "git checkout" give one empty line
 
-    console.debug('Following branches will be deleted');
+    console.log('Following branches will be deleted');
     for (const name of branchNamesToDelete) {
-      console.debug(` - ${name}`);
+      console.log(` - ${name}`);
+    }
+
+    if (!cliOptions.noConfirm) {
+      const answer = await prompt("Type 'y' to delete above branch or any key for canceling, then hit Enter: ");
+      if (answer === 'y') {
+        const deletedBranchNames = [];
+
+        await new BPromise((resolve) => {
+          eachSeries(
+            branchNamesToDelete,
+            (branchName, done) => {
+              execAsync(`git branch ${cliOptions.force ? '-D' : '-d'} ${branchName}`)
+                .then(
+                  () => {
+                    deletedBranchNames.push(branchName);
+                    done()
+                  },
+                  () => done()
+                );
+            },
+            () => resolve()
+          );
+        });
+
+        if (deletedBranchNames.length === branchNamesToDelete.length) {
+          console.log('Deleted all!');
+        }
+        else {
+          if (deletedBranchNames.length === 0) {
+            console.log('None of branch are deleted!');
+          }
+          else {
+            console.log("Deleted some, they're:");
+            for (const name of deletedBranchNames) {
+              console.log(` - ${name}`);
+            }
+          }
+        }
+      }
     }
   }
   catch (err) {
@@ -60,10 +101,9 @@ async function main() {
 }
 
 function exit(message) {
-  console.debug(message);
+  console.error(message);
   process.exit(1);
 }
-
 /*
 #!/bin/bash
 

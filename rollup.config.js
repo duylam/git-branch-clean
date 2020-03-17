@@ -21,7 +21,7 @@ export default {
           "package.json",
           "package-lock.json",
           "LICENSE",
-          "README"
+          "README.md"
         ],
         dest: 'dist/'
       }]

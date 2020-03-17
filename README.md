@@ -1,6 +1,6 @@
-# git-gc
+`git-gc` is a command line tool to clean up unused git branches
 
-A command line tool to clean up unused git branches
+# Table of content
 
 <!-- toc -->
 
@@ -14,28 +14,41 @@ A command line tool to clean up unused git branches
 
 ## 1. Usage
 
-1. Install the tool
+1. Install it
 
 ```bash
 npm i -g git-gc
 ```
 
-2. Locate to a git folder
-3. Remove unused branches, one of below flow
+2. `cd` to a git folder
+3. Remove unused branches at
 
-**3.a** For local branches
+  - Local branches
 
-```bash
-git-gc
+  ```bash
+  git-gc
+  ```
+
+  - Remote repo e.g. with name `origin`
+
+  ```bash
+  git-gc -r origin
+  ```
+
+4. Above command will print branches that it's going to remove, and ask for confirmation. Like below
+
+```
+$ git-gc
+Switching to branch 'master'
+Following local branches will be deleted:
+  sample-branch-1
+  sample-branch-2
+  sample-branch-3
+Type 'y' to delete above branch or any key for canceling, then hit Enter: y
+Finished!
 ```
 
-**3.b** For remote branches
-
-```bash
-git-gc -r origin
-```
-
-4. Your git folder is clean now
+5. Your git folder (or remote git repo) is clean now
 
 ## 2. Contribution
 
@@ -47,15 +60,13 @@ git-gc -r origin
 
 1. `npm install` to install dependencies.
 1. `npm start` to begin watching file changed and auto build to `build` folder.
-1. Temporarily alter `$PATH` to launch `index.js` as command line: `PATH=$PATH:/this-folder/build`
-1. Move to another git folder and run the command line: `cd /some/git/folder; DEBUG=git-gc index.js --help`
-1. Begin coding and submit Pull Request :)
+1. Alter `$PATH` for launching `build/index.js`: `PATH=$PATH:/this-folder/build`
+1. Move to another git folder (e.g `cd /some/git/folder) and run the tool: `DEBUG=git-gc index.js --help`
+1. Begin coding. Pull Requests are welcome :)
 
 ### 2.3 Other development commands
 
 - `npm run format` to format the code nicer
 - `npm run lint` to run static code checker
-- `npm run build` to build code into **./build** folder
-- `npm run package` to bundle **./build** folder and put outcome to **./dist** for publishing
 - `npm run update-toc` to update Table of Content this file
 - Create dummy local and remote (name "origin") git branches by running script [./scripts/create-dummy-branches.sh](./scripts/create-dummy-branches.sh) at any git folder

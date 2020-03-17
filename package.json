@@ -1,12 +1,14 @@
 {
   "name": "@duylam/git-gc",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0",
   "description": "A command line tool to clean up unused git branches",
   "bin": {
     "git-gc": "./cli.js"
   },
   "keywords": [
-    "git", "clean-up", "tool"
+    "git",
+    "clean-up",
+    "tool"
   ],
   "homepage": "https://github.com/duylam/git-gc",
   "bugs": "https://github.com/duylam/git-gc/issues",
@@ -24,28 +26,11 @@
   ],
   "scripts": {
     "lint": "eslint src/**/*.js",
-    "format": "prettier --write \"src/**/*.js\"",
-    "build": "del build; babel --source-maps --out-dir build src/; chmod 755 build/index.js",
-    "package": "del dist; mkdir dist; rollup -c; cp package.json package-lock.json LICENSE dist/",
-    "start": "nodemon --exec \"npm run build\" src/index.js",
+    "format": "prettier --write 'src/**/*.js'",
+    "build": "rm -rf build; babel --source-maps --out-dir build src/; chmod 755 build/index.js",
+    "package": "rm -rf dist; mkdir dist; rollup -c",
+    "start": "npm run build; chokidar 'src/**/*.js' -c 'npm run build'",
     "update-toc": "markdown-toc -i ./README.md"
-  },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "current"
-          }
-        }
-      ]
-    ]
-  },
-  "nodemonConfig": {
-    "ignore": [
-      "dist/"
-    ]
   },
   "engines": {
     "node": ">=8.0.0"
@@ -56,26 +41,24 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.1",
-    "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/register": "^7.0.0",
     "@rollup/plugin-commonjs": "^11.0.2",
     "babel-eslint": "^10.1.0",
+    "chokidar-cli": "^2.1.0",
     "del-cli": "^3.0.0",
     "eslint": "^6.8.0",
-    "gulp": "^4.0.0",
-    "gulp-cli": "^2.0.0",
-    "nodemon": "^2.0.1",
+    "markdown-toc": "^1.2.0",
     "prettier": "^1.19.1",
     "rollup": "^2.0.6",
+    "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-preserve-shebangs": "^0.1.2",
-    "markdown-toc": "^1.2.0",
     "rollup-plugin-terser": "^5.3.0"
   },
   "dependencies": {
-    "debug": "^4.1.1",
     "async": "^3.2.0",
     "bluebird": "^3.7.2",
+    "debug": "^4.1.1",
     "lodash": "^4.17.15",
     "yargs": "^15.0.2"
   }

@@ -48,7 +48,7 @@ Type 'y' to delete above branch or any key for canceling, then hit Enter: y
 Finished!
 ```
 
-5. Your git folder (or remote git repo) is clean now
+5. Your git folder (or remote git repo) is clean now. See more options with `git-gc -h`
 
 ## 2. Contribution
 

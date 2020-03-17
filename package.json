@@ -27,7 +27,7 @@
   "scripts": {
     "lint": "eslint src/**/*.js",
     "format": "prettier --write 'src/**/*.js'",
-    "build": "rm -rf build; babel --source-maps --out-dir build src/; chmod 755 build/index.js",
+    "build": "bash scripts/build.sh",
     "package": "rm -rf dist; mkdir dist; rollup -c",
     "start": "npm run build; chokidar 'src/**/*.js' -c 'npm run build'",
     "update-toc": "markdown-toc -i ./README.md"
@@ -50,6 +50,7 @@
     "eslint": "^6.8.0",
     "markdown-toc": "^1.2.0",
     "prettier": "^1.19.1",
+    "replace": "^1.1.5",
     "rollup": "^2.0.6",
     "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-preserve-shebangs": "^0.1.2",

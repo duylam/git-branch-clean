@@ -32,4 +32,5 @@ export default argv
     type: 'boolean'
   })
   .help('h')
+  .version('##VERSION##')
   .alias('h', 'help').argv;

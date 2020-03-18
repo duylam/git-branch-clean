@@ -5,6 +5,9 @@ git:
 branches:
   only:
     - master
+    # Required, or Travis won't trigger deploys when a new tag is pushed.
+    # Version tags should be of the form: v0.1.0
+    - /^v\d+\.\d+\.\d+$/
 
 before_script: npm run lint
 script: npm run build
@@ -12,10 +15,12 @@ script: npm run build
 before_deploy:
   - npm run package
   - cd dist
+
 deploy:
   provider: npm
   email: "duylamphuong@gmail.com"
   api_key: "$NPM_TOKEN"
+  # Tell Travis to keep previous generated file so that we can publish
   skip_cleanup: true
   on:
     tags: true

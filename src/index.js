@@ -17,7 +17,7 @@ async function main() {
 
   try {
     debug('Validating .git folder');
-    await execAsync('git log');
+    await execAsync('git show HEAD');
   } catch (err) {
     debug(err);
     exit(

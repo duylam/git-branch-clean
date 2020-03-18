@@ -14,30 +14,26 @@
 
 ## 1. Usage
 
-1. Install it
+1. Install [nodejs](https://nodejs.org/en/download/). The minimum version supported is v8.0+
+1. Install the command line tool
 
 ```bash
 npm i -g git-gc
 ```
 
-2. `cd` to a git folder
-3. Remove unused branches at
-
-  - Local branches
-
+3. `cd` to a git folder
+1. To remove unused branches at
+  - local branches
   ```bash
   git-gc
   ```
-
-  - Remote repo e.g. with name `origin`
-
+  - remote repo with name `origin`
   ```bash
   git-gc -r origin
   ```
+5. Above command prints branches that will be removed, and asks for confirmation. Below is how it looks like
 
-4. Above command will print branches that it's going to remove, and ask for confirmation. Like below
-
-```
+```bash
 $ git-gc
 Switching to branch 'master'
 Following local branches will be deleted:
@@ -48,25 +44,25 @@ Type 'y' to delete above branch or any key for canceling, then hit Enter: y
 Finished!
 ```
 
-5. Your git folder (or remote git repo) is clean now. See more options with `git-gc -h`
+6. Finished! Your git folder (or remote git repo) is clean now. See more options with `git-gc -h`
 
 ## 2. Contribution
 
-### 2.1 Setup
+### 2.1. Setup
 
-- [NodeJs](https://nodejs.org/en/) v8.x
+- [NodeJs](https://nodejs.org/en/download/) v8.x
 
-### 2.2 Getting started
+### 2.2. Getting started
 
-1. `npm install` to install dependencies.
-1. `npm start` to begin watching file changed and auto build to `build` folder.
+1. Run `npm install` to install dependencies.
+1. Run `npm start` to begin watching file changes and auto build to `build` folder.
 1. Alter `$PATH` for launching `build/index.js`: `PATH=$PATH:/this-folder/build`
-1. Move to another git folder (e.g `cd /some/git/folder) and run the tool: `DEBUG=git-gc index.js --help`
-1. Begin coding. Pull Requests are welcome :)
+1. Move to another git folder (e.g `cd /some/git/folder`) and run the tool: `DEBUG=git-gc index.js --help`
+1. Begin coding, Pull Requests are welcome :)
 
-### 2.3 Other development commands
+### 2.3. Other development commands
 
 - `npm run format` to format the code nicer
 - `npm run lint` to run static code checker
-- `npm run update-toc` to update Table of Content this file
-- Create dummy local and remote (name "origin") git branches by running script [./scripts/create-dummy-branches.sh](./scripts/create-dummy-branches.sh) at any git folder
+- `npm run update-toc` to update the Table of Content this file
+- To create dummy local and remote (name "origin") git branches for coding, run the script [./scripts/create-dummy-branches.sh](./scripts/create-dummy-branches.sh) at any git folder

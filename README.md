@@ -1,6 +1,10 @@
-`git-gc` is a command line tool to clean up unused git branches
+# git-gc
 
-# Table of content
+![npm](https://img.shields.io/npm/v/@duylam/git-gc)
+
+A command line tool to clean up unused git branches
+
+**Table of content**
 
 <!-- toc -->
 
@@ -14,7 +18,7 @@
 
 ## 1. Usage
 
-1. Install [nodejs](https://nodejs.org/en/download/). The minimum version supported is v8.0+
+1. Install [nodejs](https://nodejs.org/en/download/). The minimum version supported is v8.x or newer
 1. Install the command line tool
 
 ```bash
@@ -64,5 +68,5 @@ Finished!
 
 - `npm run format` to format the code nicer
 - `npm run lint` to run static code checker
-- `npm run update-toc` to update the Table of Content this file
+- `npm run update-toc` to update the Table of Content in this file
 - To create dummy local and remote (name "origin") git branches for coding, run the script [./scripts/create-dummy-branches.sh](./scripts/create-dummy-branches.sh) at any git folder

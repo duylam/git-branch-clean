@@ -18,7 +18,7 @@
 1. Install the command line tool
 
 ```bash
-npm i -g git-gc
+npm i -g @duylam/git-gc
 ```
 
 3. `cd` to a git folder

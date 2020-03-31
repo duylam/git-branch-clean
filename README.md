@@ -29,11 +29,11 @@ npm i -g @duylam/git-branch-clean
 1. To remove unused branches at
   - local branches
   ```bash
-  git-gc
+  git-branch-clean
   ```
   - remote repo with name `origin`
   ```bash
-  git-gc -r origin
+  git-branch-clean -r origin
   ```
 5. Above command prints branches that will be removed, and asks for confirmation. Below is how it looks like
 

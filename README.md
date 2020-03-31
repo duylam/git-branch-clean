@@ -1,6 +1,6 @@
-# git-gc
+# git-branch-clean
 
-![npm](https://img.shields.io/npm/v/@duylam/git-gc)
+![npm](https://img.shields.io/npm/v/@duylam/git-branch-clean)
 
 A command line tool to clean up unused git branches
 
@@ -22,7 +22,7 @@ A command line tool to clean up unused git branches
 1. Install the command line tool
 
 ```bash
-npm i -g @duylam/git-gc
+npm i -g @duylam/git-branch-clean
 ```
 
 3. `cd` to a git folder
@@ -38,7 +38,7 @@ npm i -g @duylam/git-gc
 5. Above command prints branches that will be removed, and asks for confirmation. Below is how it looks like
 
 ```bash
-$ git-gc
+$ git-branch-clean
 Switching to branch 'master'
 Following local branches will be deleted:
   sample-branch-1
@@ -48,7 +48,7 @@ Type 'y' to delete above branch or any key for canceling, then hit Enter: y
 Finished!
 ```
 
-6. Finished! Your git folder (or remote git repo) is clean now. See more options with `git-gc -h`
+6. Finished! Your git folder (or remote git repo) is clean now. See more options with `git-branch-clean -h`
 
 ## 2. Contribution
 
@@ -61,7 +61,7 @@ Finished!
 1. Run `npm install` to install dependencies.
 1. Run `npm start` to begin watching file changes and auto build to `build` folder.
 1. Alter `$PATH` for launching `build/index.js`: `PATH=$PATH:/this-folder/build`
-1. Move to another git folder (e.g `cd /some/git/folder`) and run the tool: `DEBUG=git-gc index.js --help`
+1. Move to another git folder (e.g `cd /some/git/folder`) and run the tool: `DEBUG=git-branch-clean index.js --help`
 1. Begin coding, Pull Requests are welcome :)
 
 ### 2.3. Other development commands

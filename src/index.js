@@ -6,7 +6,7 @@ import * as config from './config';
 import {execAsync, ensureGitFolder, prompt, exit, debug, setupDebug} from './util';
 import * as git from './git';
 
-setupDebug('git-gc');
+setupDebug('git-branch-clean');
 main();
 
 async function main() {

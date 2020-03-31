@@ -1,20 +1,20 @@
 {
-  "name": "@duylam/git-gc",
-  "version": "1.0.4",
+  "name": "@duylam/git-branch-clean",
+  "version": "1.0.5",
   "description": "A command line tool to clean up unused git branches",
   "bin": {
-    "git-gc": "./cli.js"
+    "git-branch-clean": "./cli.js"
   },
   "keywords": [
     "git",
     "clean-up",
     "tool"
   ],
-  "homepage": "https://github.com/duylam/git-gc",
-  "bugs": "https://github.com/duylam/git-gc/issues",
+  "homepage": "https://github.com/duylam/git-branch-clean",
+  "bugs": "https://github.com/duylam/git-branch-clean/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/duylam/git-gc"
+    "url": "https://github.com/duylam/git-branch-clean"
   },
   "license": "MIT",
   "author": {

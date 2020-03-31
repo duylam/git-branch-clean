@@ -68,8 +68,8 @@ export async function deleteBranches(names, {repoRemoteName = null, force = fals
           /**
            * Full error from git
            *
-           * error: The branch 'git-gc-1' is not fully merged.
-           * If you are sure you want to delete it, run 'git branch -D git-gc-1'.
+           * error: The branch 'git-branch-clean-1' is not fully merged.
+           * If you are sure you want to delete it, run 'git branch -D git-branch-clean-1'.
            */
           console.log(
             `Warning: branch '${branchName}' isn't merged. You may use option '--force' (applied for all branches) if you don't need it any more. Leave the branch as is`

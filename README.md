@@ -1,5 +1,7 @@
 # git-gc
 
+**`git-gc` was renamed to `git-branch-clean`. Please visit and use [git-branch-clean](https://www.npmjs.com/package/@duylam/git-branch-clean) package instead**
+
 ![npm](https://img.shields.io/npm/v/@duylam/git-gc)
 
 A command line tool to clean up unused git branches

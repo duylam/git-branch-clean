@@ -13,6 +13,11 @@ async function main() {
   debug('Command line options');
   debug(omit(config, 'exitIfConfigInvalid'));
 
+  console.log();
+  // eslint-disable-next-line max-len
+  console.log('Warning: git-gc was renamed to git-branch-clean. Please visit and use https://www.npmjs.com/package/@duylam/git-branch-clean package instead');
+  console.log();
+
   config.exitIfConfigInvalid();
 
   try {

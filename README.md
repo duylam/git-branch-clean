@@ -7,10 +7,12 @@ A NodeJS-based command line tool to clean up unused git branches
 <!-- toc -->
 
 - [1. Usage](#1-usage)
+  * [1.1. Install the tool](#11-install-the-tool)
+  * [1.2. How to use](#12-how-to-use)
 - [2. Contribution](#2-contribution)
-  * [2.1 Setup](#21-setup)
-  * [2.2 Getting started](#22-getting-started)
-  * [2.3 Other development commands](#23-other-development-commands)
+  * [2.1. Setup](#21-setup)
+  * [2.2. Develop](#22-develop)
+    + [2.3. Other development utilities](#23-other-development-utilities)
 
 <!-- tocstop -->
 

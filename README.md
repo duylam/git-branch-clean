@@ -12,7 +12,8 @@ A NodeJS-based command line tool to clean up unused git branches
 - [2. Contribution](#2-contribution)
   * [2.1. Setup](#21-setup)
   * [2.2. Develop](#22-develop)
-    + [2.3. Other development utilities](#23-other-development-utilities)
+  * [2.3. Other development utilities](#23-other-development-utilities)
+  * [2.4. Maintenance guideline](#24-maintenance-guideline)
 
 <!-- tocstop -->
 
@@ -79,14 +80,14 @@ DEBUG=git-branch-clean node $GBC_DIR/build/index.js --help
 
 6. Code :)
 
-### 2.3. Other development utilities
+## 2.3. Other development utilities
 
 - `npm run format` to format the code nicer
 - `npm run lint` to run static code checker
 - `npm run update-toc` to update the Table of Content in this file
 - To create dummy local and remote (named `origin`) git branches for coding, run the script [./scripts/create-dummy-branches.sh](./scripts/create-dummy-branches.sh) at any git repo
 
-### 2.4. Maintenance guideline
+## 2.4. Maintenance guideline
 
 - To publish new version on NPM, create a Github Release with prefix `v` at git tag e.g. `v0.1.0`
 - All changes in `main` branch are required to have PR

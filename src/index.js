@@ -11,9 +11,7 @@ main();
 
 async function main() {
   debug('Command line options');
-  debug(omit(config, 'exitIfConfigInvalid'));
-
-  config.exitIfConfigInvalid();
+  debug(config);
 
   try {
     debug('Validating .git folder');
@@ -29,29 +27,14 @@ async function main() {
     if (config.remoteName) {
       console.log(`Fetching remote repo name '${config.remoteName}'`);
       await execAsync(`git fetch ${config.remoteName}`);
-    } else {
-      let stayBranch = null;
-      if (config.stayBranch) {
-        stayBranch = config.stayBranch
-      }
-      else {
-  const [stdout] = await execAsync(
-
-      }
-
-      console.log(`Switching to branch '${stayBranch}'`);
-      await execAsync(`git checkout ${stayBranch}`);
     }
 
     const branchNamesToDelete = await git.getBranchesForDeleting(config.remoteName, {
-      keepBranches: config.keepBranches,
-      stayBranch: config.stayBranch
+      keepBranches: config.keepBranches
     });
 
-    if (!config.remoteName) {
-      if (branchNamesToDelete.length === 0) {
-        exit('Found one branch only, nothing to clean up.', {warning: true});
-      }
+    if (branchNamesToDelete.length === 0) {
+      exit('No branch for deleting, nothing to clean up.');
     }
 
     console.log(
@@ -59,6 +42,7 @@ async function main() {
         ? `Following remote branches at '${config.remoteName}' will be deleted:`
         : 'Following local branches will be deleted:'
     );
+
     for (const name of branchNamesToDelete) {
       console.log(`  ${name}`);
     }
@@ -68,7 +52,7 @@ async function main() {
         "Type 'y' to delete above branch or any key for canceling, then hit Enter: "
       );
       if (answer !== 'y') {
-        console.log('Exited!');
+        console.log('No change made. Exited!');
         process.exit(0); // exits as success
       }
     }
@@ -96,3 +80,4 @@ async function main() {
     exit(`Error: ${err.message}`);
   }
 }
+

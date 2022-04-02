@@ -1,6 +1,6 @@
 {
   "name": "@duylam/git-branch-clean",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A command line tool to clean up unused git branches",
   "bin": {
     "git-branch-clean": "./cli.js"

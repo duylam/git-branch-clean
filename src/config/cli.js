@@ -9,14 +9,8 @@ export default argv
   })
   .option('k', {
     alias: 'keep-branches',
-    default: 'master, main',
-    describe: 'Comma delimited list of branch to not delete. Default is "master, main"',
-    type: 'string'
-  })
-  .option('b', {
-    alias: 'stay-branch',
-    default: 'main',
-    describe: 'Branch to switch to when doing deleting. If not provided, it\'s "master" or "main"',
+    default: '',
+    describe: 'Comma delimited list of branch to not delete. Note that "master, main" are always kept so you don\'t have to specify them here',
     type: 'string'
   })
   .option('r', {
@@ -28,7 +22,7 @@ export default argv
   .option('n', {
     alias: 'no-confirm',
     default: false,
-    describe: 'Skip confirmation. Default is false (requires confirmation)',
+    describe: 'Skip confirmation. Default is always asking for confirmation',
     type: 'boolean'
   })
   .help('h')

@@ -13,28 +13,23 @@ import {execAsync, exit, debug} from './util';
  */
 export async function getBranchesForDeleting(
   repoRemoteName = null,
-  {keepBranches, stayBranch} = {}
+  {keepBranches} = {}
 ) {
   let branchNamesToDelete;
   const [stdout] = await execAsync(
     repoRemoteName ? `git branch -r --list ${repoRemoteName}/*` : 'git branch --list'
   );
 
-  debug(`Executed 'git branch --list'. Stdout:`);
+  debug('The git repo has following branches:');
   debug(stdout);
 
-  const stdoutLines = stdout
-    .split(os.EOL)
-    .map(trim)
-    .filter(identity);
+  const stdoutLines = stdout.split(os.EOL).map(trim).filter(identity);
 
   if (repoRemoteName) {
     branchNamesToDelete = stdoutLines.map(name => name.replace(`${repoRemoteName}/`, ''));
   } else {
     // Excludes current branch
-    branchNamesToDelete = stdoutLines.filter(name => {
-      return !name.startsWith('*') || name === stayBranch;
-    });
+    branchNamesToDelete = stdoutLines.filter(name => !name.startsWith('*'));
   }
 
   if (repoRemoteName) {
@@ -42,6 +37,10 @@ export async function getBranchesForDeleting(
     branchNamesToDelete = branchNamesToDelete.filter(name => !name.startsWith('HEAD ->'));
   }
 
+  // Always keep "master" and "main" branches
+  branchNamesToDelete = branchNamesToDelete.filter(name => name !== 'master' && name !== 'main');
+
+  // Exclude branches that user want to keep from CLI option
   branchNamesToDelete = branchNamesToDelete.filter(name => !keepBranches.includes(name));
 
   return branchNamesToDelete;

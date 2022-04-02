@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Begin creating 05 local branches with pattern 'git-branch-clean-<number>'"
+echo "Creating 05 branches with pattern 'git-branch-clean-<number>' in local and remote 'origin' name"
 
 for i in {1..5}
 do

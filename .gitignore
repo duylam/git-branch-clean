@@ -1,7 +1,10 @@
-dist
-build
+dist/
+build/
 .env
 .npmrc
+
+# vim editor
+*.sw[po]
 
 # Logs
 logs

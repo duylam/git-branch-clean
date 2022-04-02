@@ -9,14 +9,14 @@ export default argv
   })
   .option('k', {
     alias: 'keep-branches',
-    default: 'master',
-    describe: 'Comma delimited list of branch to not delete. Default is "master"',
+    default: 'master, main',
+    describe: 'Comma delimited list of branch to not delete. Default is "master, main"',
     type: 'string'
   })
   .option('b', {
     alias: 'stay-branch',
-    default: 'master',
-    describe: 'Branch to switch to when doing deleting. Default is "master"',
+    default: 'main',
+    describe: 'Branch to switch to when doing deleting. If not provided, it\'s "master" or "main"',
     type: 'string'
   })
   .option('r', {

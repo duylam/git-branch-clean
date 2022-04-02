@@ -4,7 +4,7 @@ git:
   depth: 1 # to builds faster
 branches:
   only:
-    - master
+    - main
     # Required, or Travis won't trigger deploys when a new tag is pushed.
     # Version tags should be of the form: v0.1.0
     - /^v\d+\.\d+\.\d+$/

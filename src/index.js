@@ -30,8 +30,17 @@ async function main() {
       console.log(`Fetching remote repo name '${config.remoteName}'`);
       await execAsync(`git fetch ${config.remoteName}`);
     } else {
-      console.log(`Switching to branch '${config.stayBranch}'`);
-      await execAsync(`git checkout ${config.stayBranch}`);
+      let stayBranch = null;
+      if (config.stayBranch) {
+        stayBranch = config.stayBranch
+      }
+      else {
+  const [stdout] = await execAsync(
+
+      }
+
+      console.log(`Switching to branch '${stayBranch}'`);
+      await execAsync(`git checkout ${stayBranch}`);
     }
 
     const branchNamesToDelete = await git.getBranchesForDeleting(config.remoteName, {

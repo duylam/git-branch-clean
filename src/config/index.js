@@ -4,7 +4,7 @@ import cli from './cli';
 export const remoteName = cli.remoteName;
 export const force = cli.force;
 export const keepBranches = (cli.keepBranches || '').split(',').map(trim);
-export const stayBranch = (cli.stayBranch || 'master').trim();
+export const stayBranch = (cli.stayBranch || '').trim();
 export const noConfirm = cli.noConfirm;
 
 export function exitIfConfigInvalid() {
@@ -13,3 +13,4 @@ export function exitIfConfigInvalid() {
     process.exit(-1);
   }
 }
+

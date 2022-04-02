@@ -20,11 +20,11 @@ A NodeJS-based command line tool to clean up unused git branches
 
 # 1. Usage
 
-> This tool is a command line executable so please use Terminal application
+> This tool is a command line executable, please use Terminal application
 
 ## 1.1. Install the tool
 
-1. Install [NodeJS](https://nodejs.org/en/download/). The minimum version supported is v8.x or newer
+1. Install [NodeJS](https://nodejs.org/en/download/). The minimum version supported is v8.x
 1. Install the command line tool
 
 ```bash
@@ -74,7 +74,7 @@ export GBC_DIR=`pwd`
 1. Execute the tool
 
 ```bash
-DEBUG=git-branch-clean node $GBC_DIR/src/index.js --help
+DEBUG=git-branch-clean node $GBC_DIR/build/index.js --help
 ```
 
 6. Code :)

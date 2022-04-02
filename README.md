@@ -85,3 +85,8 @@ DEBUG=git-branch-clean node $GBC_DIR/build/index.js --help
 - `npm run lint` to run static code checker
 - `npm run update-toc` to update the Table of Content in this file
 - To create dummy local and remote (named `origin`) git branches for coding, run the script [./scripts/create-dummy-branches.sh](./scripts/create-dummy-branches.sh) at any git repo
+
+### 2.4. Maintenance guideline
+
+- To publish new version on NPM, create a Github Release with prefix `v` at git tag e.g. `v0.1.0`
+- All changes in `main` branch are required to have PR
